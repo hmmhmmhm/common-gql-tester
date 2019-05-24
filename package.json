@@ -1,6 +1,6 @@
 {
   "name": "common-gql-tester",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "🦄 Cross Platform GraphQL Component Design Pattern Tester",
   "main": "index.js",
   "bin": {
@@ -19,6 +19,8 @@
   "dependencies": {
     "apollo-server-express": "^2.5.0",
     "express": "^4.17.0",
-    "folder-logger": "^1.0.4"
+    "folder-logger": "^1.0.4",
+    "graphql": "^14.3.1",
+    "graphql-tag": "^2.10.1"
   }
 }
