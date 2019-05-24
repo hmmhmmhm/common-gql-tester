@@ -31,8 +31,8 @@ try{
             logger.debug(`🔥  Error executing Express server.`, {noWrite: false})
             process.exit(0)
         }
-        Logger.debug(`🚧  GraphQL Playground Sever started with port ${expressInstance.address().port}.`, {noWrite: true})
-        Logger.debug(`🚧  Playground Link: http://localhost:${expressInstance.address().port}`, {noWrite: true})
+        logger.debug(`🚧  GraphQL Playground Sever started with port ${expressInstance.address().port}.`, {noWrite: true})
+        logger.debug(`🚧  Playground Link: http://localhost:${expressInstance.address().port}`, {noWrite: true})
     }
     openServer({typeDefs, resolvers, callback})
 
