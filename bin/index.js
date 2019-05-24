@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+
+// Load modules
 const FolderLogger = require('folder-logger')
 const {openServer} = require('../index.js')
 const logger = new FolderLogger(`${__dirname}`)

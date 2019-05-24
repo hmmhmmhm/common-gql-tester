@@ -1,6 +1,6 @@
 {
   "name": "common-gql-tester",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "🦄 Cross Platform GraphQL Component Design Pattern Tester",
   "main": "index.js",
   "bin": {
@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/hmmhmmhm/common-gql-tester.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "hmmhmmhm",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/hmmhmmhm/common-gql-tester/issues"
   },
