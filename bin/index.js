@@ -34,7 +34,7 @@ try{
         Logger.debug(`🚧  GraphQL Playground Sever started with port ${expressInstance.address().port}.`, {noWrite: true})
         Logger.debug(`🚧  Playground Link: http://localhost:${expressInstance.address().port}`, {noWrite: true})
     }
-    openServer({typeDefs, resolvers})
+    openServer({typeDefs, resolvers, callback})
 
 }catch(e){
     logger.debug(`🔥  Error executing Apollo GraphQL server.`, {noWrite: false})
