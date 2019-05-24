@@ -4,15 +4,18 @@ const Express = require('express')
 /**
  * @description Command function is implemented in the bin folder.
  */
+
+const mockFunctionsToResolverMap = (resolverMap) =>{
+    let mockFunctions = {}
+    for (var key in resolverMap) {
+        if (!resolverMap.hasOwnProperty(key)) continue
+        mockFunctions[key] = resolverMap[key]()
+    }
+    return mockFunctions
+}
+
 module.exports = {
-    mockFunctionsToResolverMap: (resolverMap) =>{
-        let mockFunctions = {}
-        for (var key in resolverMap) {
-            if (!resolverMap.hasOwnProperty(key)) continue
-            mockFunctions[key] = resolverMap[key]()
-        }
-        return mockFunctions
-    },
+    mockFunctionsToResolverMap,
 
     openServer: ({typeDefs, resolvers, callback}) => {
         const apolloServer = new ApolloServer({

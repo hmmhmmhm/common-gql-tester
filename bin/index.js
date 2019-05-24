@@ -5,7 +5,7 @@ const FolderLogger = require('folder-logger')
 const {openServer} = require('../index.js')
 const logger = new FolderLogger(`${__dirname}`)
 
-logger.debug(`🦄 Common GQL Tester Running...`, {noWrite: false})
+logger.debug(`🦄  Common GQL Tester Running...`, {noWrite: false})
 
 /***
  * @description Collecting Project GQL Data
@@ -13,11 +13,12 @@ logger.debug(`🦄 Common GQL Tester Running...`, {noWrite: false})
 let typeDefs, resolvers
 try{
     ({typeDefs, resolvers} = require(`${process.cwd()}/dist/graphql/index.js`))
-    logger.debug(`🦄 Detected typeDefs & Resolvers`, {noWrite: false})
+    logger.debug(`🦄  Detected typeDefs & Resolvers`, {noWrite: false})
 
 }catch(e){
-    logger.debug(`🚧 Are you sure there's a project file here?`, {noWrite: false})
-    logger.debug(`🚧 /dist/graphql/index.js not found.`, {noWrite: false})
+    logger.debug(`🚧   Are you sure there's a runnable project file here?`, {noWrite: false})
+    logger.debug(`🚧  Import dist/graphql/index.js has failed.`, {noWrite: false})
+    console.log(e)
     process.exit(0)
 }
 
