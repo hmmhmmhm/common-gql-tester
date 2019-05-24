@@ -1,6 +1,6 @@
 {
   "name": "common-gql-tester",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "🦄 Cross Platform GraphQL Component Design Pattern Tester",
   "main": "index.js",
   "bin": {

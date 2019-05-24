@@ -8,7 +8,7 @@ This module is dedicated for testing Common-GQL projects. [[Link]](https://githu
 ## Usage
 
 ```bash
-npm install --g common-gql-tester
+npm install --global common-gql-tester
 common-gql-tester
 ```
 
