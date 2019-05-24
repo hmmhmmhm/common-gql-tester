@@ -34,12 +34,12 @@ module.exports = {
             path: "/",
             app: expressInstance
         })
-    
-        expressInstance.listen(0, () => {
-            callback(true, expressInstance)
+
+        let expressListener = expressInstance.listen(0, () => {
+            callback(true, expressInstance, expressListener)
     
         }).on("error", (err) => {
-            callback(false, expressInstance)
+            callback(false, expressInstance, expressListener)
             console.log(err)
         })
     }

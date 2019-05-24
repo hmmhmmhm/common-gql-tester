@@ -26,13 +26,13 @@ try{
  * @description Start GQL Playground Server
  */
 try{
-    let callback = (isSuccess, expressInstance)=>{
+    let callback = (isSuccess, expressInstance, expressListener)=>{
         if(!isSuccess){
             logger.debug(`🔥  Error executing Express server.`, {noWrite: false})
             process.exit(0)
         }
-        logger.debug(`🚧  GraphQL Playground Sever started with port ${expressInstance.address().port}.`, {noWrite: true})
-        logger.debug(`🚧  Playground Link: http://localhost:${expressInstance.address().port}`, {noWrite: true})
+        logger.debug(`🚧  GraphQL Playground Sever started with port ${expressListener.address().port}.`, {noWrite: true})
+        logger.debug(`🚧  Playground Link: http://localhost:${expressListener.address().port}`, {noWrite: true})
     }
     openServer({typeDefs, resolvers, callback})
 
