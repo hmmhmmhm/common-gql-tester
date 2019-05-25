@@ -1,3 +1,4 @@
+const {Sequence} = require('async-sequencer')
 const logger = require('../logger')
 
 /**

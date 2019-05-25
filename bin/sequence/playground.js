@@ -1,3 +1,4 @@
+const {Sequence} = require('async-sequencer')
 const logger = require('../logger')
 const {openServer} = require('../../')
 
@@ -22,7 +23,12 @@ module.exports = Sequence(({resolve, reject, data})=>{
             logger.debug(`🚧  Playground Link: http://localhost:${expressListener.address().port}`, {noWrite: true})
             resolve()
         }
-        openServer({typeDefs, resolvers, callback})
+
+        openServer({
+            typeDefs: data.typeDefs, 
+            resolvers: data.resolvers,
+            callback
+        })
 
     }catch(e){
 
