@@ -1,43 +1,46 @@
 #!/usr/bin/env node
 
 // Load modules
-const FolderLogger = require('folder-logger')
-const {openServer} = require('../index.js')
-const logger = new FolderLogger(`${__dirname}`)
+const {Sequencer} = require('async-sequencer')
+const logger = require('./logger')
 
 logger.debug(`🦄  Common GQL Tester Running...`, {noWrite: false})
 
-/***
- * @description Collecting Project GQL Data
+/**
+ * @description
+ * Sequence data from the tester is here.
  */
-let typeDefs, resolvers
-try{
-    ({typeDefs, resolvers} = require(`${process.cwd()}/dist/graphql/index.js`))
-    logger.debug(`🦄  Detected typeDefs & Resolvers`, {noWrite: false})
+const testerData = {
+    serviceTesterOption: undefined,
+    serviceInit: undefined,
 
-}catch(e){
-    logger.debug(`🚧   Are you sure there's a runnable project file here?`, {noWrite: false})
-    logger.debug(`🚧  Import dist/graphql/index.js has failed.`, {noWrite: false})
-    console.log(e)
-    process.exit(0)
+    typeDefs: undefined,
+    resolvers: undefined
 }
 
-/***
- * @description Start GQL Playground Server
+/**
+ * @description
+ * GraphQL Test Sequence
  */
-try{
-    let callback = (isSuccess, expressInstance, expressListener)=>{
-        if(!isSuccess){
-            logger.debug(`🔥  Error executing Express server.`, {noWrite: false})
+Sequencer(
+    [
+        require('./sequence/invoke'),
+        require('./sequence/collect'),
+        require('./sequence/playground'),
+    ],
+
+    ({sequenceNumber,
+    isSequenceSuccess,
+    isEndOfSequence})=>{
+
+        if(!isSequenceSuccess){
+            logger.debug(`🚧  Common-GQL Sequence #${sequenceNumber} has been failed.`, {noWrite: false})
+            logger.debug(`🚧  Common-GQL-Tester Will be shudown...`, {noWrite: false})
             process.exit(0)
+            return
         }
-        logger.debug(`🚧  GraphQL Playground Sever started with port ${expressListener.address().port}.`, {noWrite: true})
-        logger.debug(`🚧  Playground Link: http://localhost:${expressListener.address().port}`, {noWrite: true})
-    }
-    openServer({typeDefs, resolvers, callback})
 
-}catch(e){
-    logger.debug(`🔥  Error executing Apollo GraphQL server.`, {noWrite: false})
-    console.log(e)
-    process.exit(0)
-}
+        if(isEndOfSequence) logger.debug(`🦄  All test sequences were successful.`, {noWrite: false})
+    },
+
+testerData)
